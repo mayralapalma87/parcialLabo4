@@ -23,7 +23,7 @@ export class ModalNuevoUsuarioComponent implements OnInit {
   };
   public selectedRole: any;
   ngOnInit() {
-    this.getUsuarios();
+   //this.getUsuarios();
   }
   getUsuarios() {
     this.dataApi.getUsers().subscribe( usuarios => {

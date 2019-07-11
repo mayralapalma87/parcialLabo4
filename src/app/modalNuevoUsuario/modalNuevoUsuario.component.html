@@ -29,17 +29,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col">
-                            <label class="col-md-10 control-label" for="email">E-mail:</label>
-                            <div class="col-md-10">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="email">E-mail:</label>
+                            <div>
                                 <input id="email" name="email" [(ngModel)]="this.dataApi.selectedUser.email" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="col">
-                            <label class="col-md-10 control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
-                            <select class="custom-select col-md-10" id="inlineFormCustomSelect" [(ngModel)]="this.selectedRole" (change)="setRole($event.target.value)">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
+                            <select class="custom-select" id="inlineFormCustomSelect" [(ngModel)]="this.selectedRole" (change)="setRole($event.target.value)">
                               <option selected>Seleccionar...</option>
                               <option value="1">Alumno</option>
                               <option value="2">Profesor</option>

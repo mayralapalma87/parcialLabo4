@@ -42,7 +42,7 @@ export class ListaUsuariosComponent implements OnInit {
     }
   }
   modificarUsuario(user: UserInterface) {
-    this.dataApi.selectedTurno = Object.assign({}, user);
+    this.dataApi.selectedUser = Object.assign({}, user);
   }
 
 }
