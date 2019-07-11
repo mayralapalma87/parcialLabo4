@@ -46,16 +46,4 @@ export class ListaUsuariosComponent implements OnInit {
   modificarUsuario(user: UserInterface) {
     this.dataApi.selectedUser = Object.assign({}, user);
   }
-  //Metodos de busqueda:
-  mostrarDatos(Usuarios) {
-    console.log(Usuarios);
-    this.usuariosModal = Usuarios;
-  }
-  public reiniciar() {
-    this.usuarios = [];
-  }
-
-  seBorro(id: any) {
-    this.usuarios = this.usuarios.filter( usuario => usuario.id !== id);
-  }
 }

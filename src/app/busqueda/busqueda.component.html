@@ -1,6 +1,13 @@
 <form class="form-inline my-2 my-lg-0">
-    <input ngModel #filtroInput="ngModel" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="filtroInput">
-    <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modalBusqueda" (click)="buscar(filtroInput.value)">Modificar</button>
+    <!-- <input ngModel #filtroInput="ngModel" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="filtroInput"> -->
+    <label class="control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
+    <select class="custom-select" id="inlineFormCustomSelect" ngModel #filtroInput="ngModel" name="filtroInput">
+    <option selected>Buscar...</option>
+      <option value="alumno">Alumno</option>
+      <option value="profesor">Profesor</option>
+      <option value="admin">Administrador</option>
+    </select>
+    <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modalBusqueda" (click)="buscar(filtroInput.value)">Buscar</button>
     <!-- <button class="btn btn-outline-success my-2 my-sm-0" (click)="buscar(filtroInput.value)">Buscar</button> -->
 </form>
-<app-modalBusqueda></app-modalBusqueda>
+<app-modalBusqueda [usuarios]="this.listaUsers"></app-modalBusqueda>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserInterface } from '../models/user';
 import { DataApiService } from '../services/data-api.service';
 
@@ -11,8 +11,10 @@ export class ModalBusquedaComponent implements OnInit {
   public arrayDeUsuariosOriginalParaFiltrar: UserInterface[] = [];
   public usuariosModal: UserInterface[] = [];
   constructor(private dataApi: DataApiService) { }
+  @Input() usuarios: any;
 
   ngOnInit() {
+    this.getUsuarios();debugger;
   }
 
   getUsuarios() {
@@ -28,7 +30,6 @@ export class ModalBusquedaComponent implements OnInit {
   public reiniciar() {
     this.usuariosModal = [];
   }
-
   seBorro(id: any) {
     this.usuariosModal = this.arrayDeUsuariosOriginalParaFiltrar.filter( usuario => usuario.id !== id);
   }
