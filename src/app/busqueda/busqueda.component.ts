@@ -1,8 +1,7 @@
 import { UserInterface } from 'src/app/models/user';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { turnoInteface } from '../models/turnoInterface';
 import { DataApiService } from '../services/data-api.service';
-
+declare var $: any;
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
@@ -13,7 +12,7 @@ export class BusquedaComponent implements OnInit {
   public filtroInput: string;
   @Input() listaUsers: UserInterface[];
   @Output() filtro = new EventEmitter<UserInterface[]>();
-  @Output() usuariosModal: UserInterface[] = [];
+  @Output() usuariosModal: UserInterface[];
   constructor(private dataApi: DataApiService) { }
 
   ngOnInit() {
@@ -33,24 +32,20 @@ export class BusquedaComponent implements OnInit {
           if (usuario.roles.alumno === true) {
             return true;
           }
-        }
-        if (filtro === 'profesor') {
+        } else if (filtro === 'profesor') {
           if (usuario.roles.profesor === true) {
             return true;
           }
-        }
-        if (filtro === 'admin') {
+        } else if (filtro === 'admin') {
           if (usuario.roles.admin === true) {
             return true;
-          }
+          } else { return false; }
         }
       }
       return false;
     });
-    if (usuariosBuscados.length > 0) {
-      this.usuariosModal = usuariosBuscados;
-      this.filtro.emit(usuariosBuscados);
-    }
+    this.usuariosModal = usuariosBuscados;
+    this.filtro.emit(usuariosBuscados);
   }
 }
 

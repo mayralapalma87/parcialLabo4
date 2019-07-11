@@ -46,4 +46,10 @@ export class ListaUsuariosComponent implements OnInit {
   modificarUsuario(user: UserInterface) {
     this.dataApi.selectedUser = Object.assign({}, user);
   }
+  mostrarDatos(usuarios) {
+    console.log(usuarios);
+    this.usuariosModal = usuarios;
+    ( $('#modalBusqueda') as any).modal('show');
+    // $('#exampleModal').modal('toggle');
+  }
 }

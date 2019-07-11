@@ -1,5 +1,5 @@
 <div class="box">
-    <div *ngFor="let u of usuarios" class="card" style="width: 18rem;">
+    <div *ngFor="let u of  this.usuariosMostrar" class="card" style="width: 18rem;">
         <img src="{{u.foto}}" class="rounded-circle img-thumbnail" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{ u.nombre | titlecase }} <br> {{ u.apellido | titlecase }}</h5>

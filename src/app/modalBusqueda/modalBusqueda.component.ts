@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { UserInterface } from '../models/user';
 import { DataApiService } from '../services/data-api.service';
 
@@ -12,9 +12,11 @@ export class ModalBusquedaComponent implements OnInit {
   public usuariosModal: UserInterface[] = [];
   constructor(private dataApi: DataApiService) { }
   @Input() usuarios: any;
+  @ViewChild('btnClose') btnClose: ElementRef;
 
   ngOnInit() {
-    this.getUsuarios();debugger;
+    // console.log("UsuariosRecibidosBusqueda:", this.usuarios );
+    this.mostrarDatos(this.usuarios);
   }
 
   getUsuarios() {
@@ -24,7 +26,7 @@ export class ModalBusquedaComponent implements OnInit {
   }
   //Metodos de busqueda:
   mostrarDatos(Usuarios) {
-    console.log(Usuarios);
+    console.log("UsuariosRecibidosBusqueda:", Usuarios);
     this.usuariosModal = Usuarios;
   }
   public reiniciar() {
@@ -32,5 +34,9 @@ export class ModalBusquedaComponent implements OnInit {
   }
   seBorro(id: any) {
     this.usuariosModal = this.arrayDeUsuariosOriginalParaFiltrar.filter( usuario => usuario.id !== id);
+  }
+  cerrar(){
+    this.usuarios = null;
+    this.btnClose.nativeElement.click();
   }
 }

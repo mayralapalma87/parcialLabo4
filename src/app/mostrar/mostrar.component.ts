@@ -10,7 +10,9 @@ export class MostrarComponent implements OnInit {
 
   constructor() { }
   @Input() usuarios: UserInterface[];
+  usuariosMostrar : any;
   ngOnInit() {
+    this.usuariosMostrar = this.usuarios;
   }
 
 }
