@@ -50,7 +50,7 @@ export class ModalNuevoTurnoComponent implements OnInit {
     this.turno = turnoForm.value;
     this.turno.userId = this.userId;
     this.turno.estado = 'reservado';
-    if(typeof(this.cliente) !== 'undefined') {
+    if (typeof(this.cliente) !== 'undefined') {
       this.turno.cliente = this.cliente;
     }
     if (turnoForm.value.id == null) {
