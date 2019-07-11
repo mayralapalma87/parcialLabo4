@@ -59,15 +59,9 @@ export class MisTurnosComponent implements OnInit {
   modificarTurno(turno: turnoInteface) {
     this.dataApi.selectedTurno = Object.assign({}, turno);
   }
-  llenarEncuesta(turnoId) {
 
-  }
   public reiniciar() {
     this.turnos = [];
   }
-  mostrarDatos(turnos) {
-    console.log(turnos);
-    this.modalNuevoTurno = turnos;
-   // $('#modalNuevoTurnol').modal('toggle');
-  }
+
 }

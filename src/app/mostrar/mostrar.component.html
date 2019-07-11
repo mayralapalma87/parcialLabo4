@@ -1,0 +1,13 @@
+<div class="box">
+    <div *ngFor="let u of usuarios" class="card" style="width: 18rem;">
+        <img src="{{u.foto}}" class="rounded-circle img-thumbnail" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ u.nombre | titlecase }} <br> {{ u.apellido | titlecase }}</h5>
+            <p class="card-text"><b>E-mail: </b> {{ u.email }}</p>
+            <p class="card-text"><b>isAdmin:</b> {{ u.roles.admin }}</p>
+            <p class="card-text"><b>isProfesor:</b> {{ u.roles.profesor }}</p>
+            <p class="card-text"><b>isAlumno:</b> {{ u.roles.alumno }}</p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+    </div>
+</div>

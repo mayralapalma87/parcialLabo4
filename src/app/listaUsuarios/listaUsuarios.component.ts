@@ -14,7 +14,8 @@ export class ListaUsuariosComponent implements OnInit {
   public usuarios: UserInterface[];
   public isAdmin: any = null;
   public userId: string = null;
-
+  public arrayDeUsuariosOriginalParaFiltrar: UserInterface[] = [];
+  public usuariosModal: UserInterface[] = [];
   ngOnInit() {
     this.getUsuarios();
     this.getCurrentUser();
@@ -22,6 +23,7 @@ export class ListaUsuariosComponent implements OnInit {
   getUsuarios() {
     this.dataApi.getUsers().subscribe( usuarios => {
       this.usuarios = usuarios;
+      this.arrayDeUsuariosOriginalParaFiltrar = usuarios;
     });
   }
   getCurrentUser() {
@@ -44,5 +46,16 @@ export class ListaUsuariosComponent implements OnInit {
   modificarUsuario(user: UserInterface) {
     this.dataApi.selectedUser = Object.assign({}, user);
   }
+  //Metodos de busqueda:
+  mostrarDatos(Usuarios) {
+    console.log(Usuarios);
+    this.usuariosModal = Usuarios;
+  }
+  public reiniciar() {
+    this.usuarios = [];
+  }
 
+  seBorro(id: any) {
+    this.usuarios = this.usuarios.filter( usuario => usuario.id !== id);
+  }
 }

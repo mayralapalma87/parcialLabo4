@@ -31,6 +31,8 @@ import { ModalResenaTurnoComponent } from './modalResenaTurno/modalResenaTurno.c
 import { ModalHistorialComponent } from './modalHistorial/modalHistorial.component';
 import { ListaUsuariosComponent } from './listaUsuarios/listaUsuarios.component';
 import { ModalNuevoUsuarioComponent } from './modalNuevoUsuario/modalNuevoUsuario.component';
+import { ModalBusquedaComponent } from './modalBusqueda/modalBusqueda.component';
+import { MostrarComponent } from './mostrar/mostrar.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { ModalNuevoUsuarioComponent } from './modalNuevoUsuario/modalNuevoUsuari
       ModalHistorialComponent,
       ListaUsuariosComponent,
       ModalNuevoUsuarioComponent,
-      BusquedaComponent
+      BusquedaComponent,
+      ModalBusquedaComponent,
+      MostrarComponent
    ],
    imports: [
       BrowserModule,

@@ -1,4 +1,5 @@
 <form class="form-inline my-2 my-lg-0">
     <input ngModel #filtroInput="ngModel" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="filtroInput">
-    <button class="btn btn-outline-success my-2 my-sm-0" (click)="buscar(filtroInput.value)">Buscar</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#modalBusqueda" (click)="buscar(filtroInput.value)">Modificar</button>
+    <!-- <button class="btn btn-outline-success my-2 my-sm-0" (click)="buscar(filtroInput.value)">Buscar</button> -->
 </form>

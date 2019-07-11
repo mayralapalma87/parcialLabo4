@@ -1,3 +1,4 @@
+import { UserInterface } from 'src/app/models/user';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { turnoInteface } from '../models/turnoInterface';
 
@@ -9,7 +10,7 @@ import { turnoInteface } from '../models/turnoInterface';
 export class BusquedaComponent implements OnInit {
 
   public filtroInput: string;
-  @Input() listaTurnos: turnoInteface[];
+  @Input() listaUsers: UserInterface[];
   @Output() filtro = new EventEmitter<turnoInteface[]>();
   constructor() { }
 
@@ -18,17 +19,17 @@ export class BusquedaComponent implements OnInit {
 
   buscar(filtro) {
     // console.log(filtro);
-    let turnosBuscados: turnoInteface[] = [];
-    turnosBuscados = this.listaTurnos.filter( turno => {
-      if (turno.Nombre && filtro) {
-        if (turno.Nombre.indexOf(filtro) > -1) {
+    let usuariosBuscados: turnoInteface[] = [];
+    usuariosBuscados = this.listaUsers.filter( usuario => {
+      if (usuario.nombre && filtro) {
+        if (usuario.nombre.indexOf(filtro) > -1) {
           return true;
         }
       }
       return false;
     });
-    if (turnosBuscados.length > 0) {
-      this.filtro.emit(turnosBuscados);
+    if (usuariosBuscados.length > 0) {
+      this.filtro.emit(usuariosBuscados);
     }
   }
 }
