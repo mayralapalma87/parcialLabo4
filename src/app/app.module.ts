@@ -1,3 +1,4 @@
+import { BusquedaComponent } from './busqueda/busqueda.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
+import * as $ from 'jquery';
 import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
@@ -50,7 +51,8 @@ import { ModalNuevoUsuarioComponent } from './modalNuevoUsuario/modalNuevoUsuari
       ModalResenaTurnoComponent,
       ModalHistorialComponent,
       ListaUsuariosComponent,
-      ModalNuevoUsuarioComponent
+      ModalNuevoUsuarioComponent,
+      BusquedaComponent
    ],
    imports: [
       BrowserModule,

@@ -20,7 +20,7 @@ export class MisTurnosComponent implements OnInit {
   public isAdmin: any = null;
   public userId: string = null;
   public cliente: string = null;
-
+  public modalNuevoTurno: turnoInteface[] = [];
   ngOnInit() {
     this.getTurnos();
     this.getCurrentUser();
@@ -64,5 +64,10 @@ export class MisTurnosComponent implements OnInit {
   }
   public reiniciar() {
     this.turnos = [];
+  }
+  mostrarDatos(turnos) {
+    console.log(turnos);
+    this.modalNuevoTurno = turnos;
+   // $('#modalNuevoTurnol').modal('toggle');
   }
 }
