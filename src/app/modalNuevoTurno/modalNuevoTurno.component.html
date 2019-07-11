@@ -1,0 +1,63 @@
+<div class="modal fade" id="modalNuevoTurno" tabindex="-1" role="dialog" aria-labelledby="modalNuevoTurnoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNuevoTurnoLabel">
+                    {{ !this.dataApi.selectedTurno.id ? 'Nuevo Turno' : 'Modificar Turno'}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form name="formTurno" #formTurno="ngForm" (ngSubmit)="onSaveTurno(formTurno)">
+                    <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedTurno.id">
+                    <input type="hidden" name="userUid" [value]="userId">
+                    <input type="hidden" name="Cliente" [value]="cliente">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Cuatrimestre">Cuatrimestre:</label>
+                            <select name="Cuatrimestre" class="form-control" placeholder="Seleccione..." [(ngModel)]="this.dataApi.selectedTurno.Cuatrimestre">
+                              <option selected>Seleccionar...</option>
+                              <option value="Primero">Primero</option>
+                              <option value="Segundo">Segundo</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Profesor">Profesores:</label>
+                            <select name="Profesor" class="form-control" placeholder="Seleccione..." [(ngModel)]="this.dataApi.selectedTurno.Profesor">
+                              <option selected>Seleccionar...</option>
+                              <ng-container *ngFor="let user of this.usuarios; index as i">
+                                  <option  *ngIf="user.roles.profesor == true">
+                                    {{user.email}}
+                                  </option>
+                              </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="Nombre">Nombre:</label>
+                            <div>
+                                <input id="Nombre" name="Nombre" type="text" [(ngModel)]="this.dataApi.selectedTurno.Nombre" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label" for="Cupos">Cupos:</label>
+                            <div>
+                                <input id="Cupos" name="Cupos" type="number" [(ngModel)]="this.dataApi.selectedTurno.Cupos" placeholder="" class="form-control input-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Salir</button>
+                        <button type="submit" class="btn btn-primary">Guardar Turno</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

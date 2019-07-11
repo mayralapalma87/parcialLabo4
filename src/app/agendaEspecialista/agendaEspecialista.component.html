@@ -1,0 +1,49 @@
+<br>
+<!--
+<div class="pd">
+   <app-busqueda [listaTurnos]="Turnos" (filtro)="mostrarDatos($event)"></app-busqueda>
+</div> -->
+<br>
+<br>
+<h5 class="section-title h1">Turnos para hoy</h5>
+{{isAdmin}}
+<div class="table-responsive-md">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Cod. Reserva</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">Paciente</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <!-- <th scope="col">Foto</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let turno of turnos; index as i">
+                <tr *ngIf="evaluarFecha(turno)">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{turno.especialidad}}</td>
+                    <td>{{turno.cliente}}</td>
+                    <td>{{turno.fecha_hora | date}}</td>
+                    <td>{{turno.estado}}</td>
+                    <!--  <td class="thmb">
+                    <img [src]='"../../assets/img"+p.foto' class="img-fluid img-thumbnail">
+                </td>-->
+                    <td>
+                        <button class="btn btn-block btn-warning" data-toggle="modal" data-target="#modalResenaTurno" (click)="modificarTurno(turno)">Reseña de atencion</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-block btn-danger" *ngIf='turno.estado == "reservado"; else botonDisable' id="buttonCancel" name="buttonCancel" (click)="cancelarTurno(turno.id)">Registrar Ausencia</button>
+                        <ng-template #botonDisable>
+                            <button id="buttonCancel" disabled=true name="buttonCancel" class="btn btn-block btn-secondary">Registrar Ausencia</button>
+                        </ng-template>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<app-modalResenaTurno></app-modalResenaTurno>

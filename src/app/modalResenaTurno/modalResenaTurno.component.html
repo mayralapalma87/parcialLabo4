@@ -1,0 +1,38 @@
+<div class="modal fade" id="modalResenaTurno" tabindex="-1" role="dialog" aria-labelledby="modalResenaTurno" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNuevoTurnoLabel">
+                    {{ isAdmin ? ' Carga de reseña de atencion' : 'Recomendaciones del profesional:'}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <form name="formTurno" #formTurno="ngForm" (ngSubmit)="onSaveTurno(formTurno)">
+                    <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedTurno.id">
+                    <input type="hidden" name="userUid" [value]="userUid">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <div class="col-md-15" *ngIf="isAdmin == true; else noAdmin">
+                                <textarea class="form-control animated" cols="150" id="new-review" name="resena_especialista" placeholder="Deje sus comentarios aqui..." rows="5" [(ngModel)]="this.dataApi.selectedTurno.resena_especialista"></textarea>
+                            </div>
+                            <ng-template #noAdmin>
+                                <div class="col-lx-15">
+                                    <textarea class="form-control animated" disabled cols="150" id="new-review" name="resena_especialista" placeholder="Deje sus comentarios aqui..." rows="5" [(ngModel)]="this.dataApi.selectedTurno.resena_especialista"></textarea>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Salir</button>
+                        <button *ngIf="isAdmin == true; else noAdminbtn" type="submit" class="btn btn-primary">Guardar Reseña</button>
+                        <ng-template #noAdminbtn>
+                            <!-- <button class="btn btn-block btn-secondary" disabled=true>Guardar Reseña</button> -->
+                        </ng-template>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

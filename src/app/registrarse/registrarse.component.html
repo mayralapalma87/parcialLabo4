@@ -1,0 +1,94 @@
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <form class="form-horizontal" (ngSubmit)="onAddUser()">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>
+                    <h1>Completar Registro</h1>
+                </legend>
+                <!-- <div class="row">
+                    <div class="col">
+                        <label class="col-md-10 control-label" for="name">Nombre</label>
+                        <div class="col-md-10">
+                            <input id="name" name="name" type="text" [(ngModel)]="user.nombre" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="col-md-10 control-label" for="surname">Apellido</label>
+                        <div class="col-md-10">
+                            <input id="surname" name="surname" type="text" [(ngModel)]="user.apellido" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                </div>
+                <br> -->
+                <div class="row">
+                    <div class="col">
+                        <label class="col-md-10 control-label" for="email">E-mail</label>
+                        <div class="col-md-10">
+                            <input id="email" name="email" [(ngModel)]="user.email" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                    <!--  <div class="col">
+                        <label class="col-md-10 control-label" for="telefono">Numero de Telefono</label>
+                        <div class="col-md-10">
+                            <input id="telefono" name="telefono" type="text" [(ngModel)]="user.telefono" placeholder="" class="form-control input-md">
+                        </div>
+                    </div> -->
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <label class="col-md-10 control-label" for="password">Contraseña</label>
+                        <div class="col-md-10">
+                            <input id="password" name="password" [(ngModel)]="user.clave" type="password" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="col-md-10 control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
+                        <select class="custom-select col-md-10" id="inlineFormCustomSelect" [(ngModel)]="this.selectedRole" (change)="setRole($event.target.value)">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Alumno</option>
+                          <option value="2">Profesor</option>
+                          <option value="3">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <!-- Carga de imagen -->
+                <div class="form-group">
+                    <label class="col-md-10 control-label" for="file">Cargar Foto de perfil</label>
+                    <div class="file">
+                        <input type="file" class="form-control-file col-md-10" name="file" accept=".png, .jpg" (change)="onUpload($event)" />
+                    </div>
+                    <hr>
+                    <div class='progress'>
+                        <div class='progress-bar progress-bar-striped bg-success' role="progressbar" [style.width]="(uploadPercent | async) + '%'">
+                        </div>
+                    </div>
+                    <br>
+                    <input #imageUser type="hidden" [value]="urlImage | async">
+                </div>
+                <!-- botones finales -->
+                <br>
+                <div class="row">
+                    <ng-template #Logged>
+                        <td>
+                            <button class="btn btn-danger" disabled="true">Su usuario esta actualmente registrado</button>
+                        </td>
+                    </ng-template>
+                    <div class="col" *ngIf="isLogged == false; else Logged">
+                        <button type="submit" id="buttonRegistry" name="buttonRegistry" class="btn btn-block btn-success">Registrarse con email</button>
+                    </div>
+                    <div class="col">
+                        <button id="buttonCancel" name="buttonCancel" routerLink="/login" class="btn btn-block btn-danger">Cancelar</button>
+                    </div>
+                </div>
+                <div id='error' *ngIf="this.haveError">
+                    <p> Oh no! ah ocurrido un error! </p>
+                    <p> {{this.error}} </p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
