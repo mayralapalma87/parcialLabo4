@@ -8,24 +8,23 @@
         <thead>
             <tr>
                 <th scope="col">Cod.</th>
-                <th scope="col">Nombre</th>
+                <th scope="col">Materia</th>
                 <th scope="col">Cuatrimestre</th>
-                <th scope="col">Cupos</th>
                 <th scope="col">Profesor</th>
-                <th scope="col"><button class="btn btn-block btn-success" data-toggle="modal" data-target="#modalNuevoTurno">Nueva Materia</button></th>
+                <th scope="col">Estado</th>
+                <th scope="col"><button class="btn btn-block btn-success" data-toggle="modal" data-target="#modalNuevaInscripcion">Inscribirse</button></th>
                 <th scope="col">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let turno of turnos; index as i">
+            <tr *ngFor="let inscripcion of inscripciones; index as i">
                 <th scope="row">{{i+1}}</th>
-                <td>{{turno.Nombre}}</td>
-                <td>{{turno.Cuatrimestre}}</td>
-                <td>{{turno.Cupos}}</td>
-                <td>{{turno.Profesor}}</td>
-
-                <td *ngIf="isAdmin == true; else noOwner">
-                    <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modalNuevoTurno" (click)="modificarTurno(turno)">Modificar</button>
+                <td>{{inscripcion.materia}}</td>
+                <td>{{inscripcion.cuatrimestre}}</td>
+                <td>{{inscripcion.profesor}}</td>
+                <td>{{inscripcion.estado}}</td>
+                <td *ngIf="inscripcion.userId == userId || isAdmin == true; else noOwner">
+                    <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#modalNuevaInscripcion" (click)="modificarInscripcion(inscripcion)">Modificar</button>
                 </td>
                 <ng-template #noOwner>
                     <td>
@@ -33,7 +32,7 @@
                     </td>
                 </ng-template>
                 <td *ngIf="isAdmin == true; else noAdmin">
-                    <button class="btn btn-block btn-danger" (click)="cancelarTurno(turno.id)">Cancelar</button>
+                    <button class="btn btn-block btn-danger" (click)="cancelarInscripcion(inscripcion.id)">Cancelar</button>
                 </td>
                 <ng-template #noAdmin>
                     <td>
@@ -44,5 +43,4 @@
         </tbody>
     </table>
 </div>
-<app-modalNuevoTurno [userId]="userId" [cliente]="cliente"></app-modalNuevoTurno>
-<app-modalResenaTurno></app-modalResenaTurno>
+<app-modalNuevaInscripcion [userId]="userId"></app-modalNuevaInscripcion>

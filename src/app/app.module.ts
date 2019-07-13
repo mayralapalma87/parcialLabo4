@@ -33,6 +33,8 @@ import { ListaUsuariosComponent } from './listaUsuarios/listaUsuarios.component'
 import { ModalNuevoUsuarioComponent } from './modalNuevoUsuario/modalNuevoUsuario.component';
 import { ModalBusquedaComponent } from './modalBusqueda/modalBusqueda.component';
 import { MostrarComponent } from './mostrar/mostrar.component';
+import { IncripcionesComponent } from './incripciones/incripciones.component';
+import { ModalNuevaInscripcionComponent } from './modalNuevaInscripcion/modalNuevaInscripcion.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { MostrarComponent } from './mostrar/mostrar.component';
       ModalNuevoUsuarioComponent,
       BusquedaComponent,
       ModalBusquedaComponent,
-      MostrarComponent
+      MostrarComponent,
+      IncripcionesComponent,
+      ModalNuevaInscripcionComponent
    ],
    imports: [
       BrowserModule,

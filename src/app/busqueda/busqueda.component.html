@@ -22,7 +22,7 @@
             <div class="modal-body">
                 <div class="box">
                     <div *ngFor="let u of  this.usuariosModal" class="card" style="width: 18rem;">
-                        <img src="{{u.foto}}" class="rounded-circle img-thumbnail" alt="Card image cap">
+                        <!-- <img src="{{u.foto}}" class="rounded-circle img-thumbnail" alt="Card image cap"> -->
                         <div class="card-body">
                             <h5 class="card-title">{{ u.nombre | titlecase }} <br> {{ u.apellido | titlecase }}</h5>
                             <p class="card-text"><b>E-mail: </b> {{ u.email }}</p>

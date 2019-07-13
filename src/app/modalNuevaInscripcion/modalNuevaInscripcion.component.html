@@ -1,0 +1,67 @@
+<div class="modal fade" id="modalNuevaInscripcion" tabindex="-1" role="dialog" aria-labelledby="modalNuevaInscripcionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNuevaInscripcionLabel">
+                    {{ !this.dataApi.selectedInscripcion.id ? 'Nuevo Inscripcion' : 'Modificar Inscripcion'}}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form name="formInscripcion" #formInscripcion="ngForm" (ngSubmit)="onSaveInscripcion(formInscripcion)">
+                    <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedInscripcion.id">
+                    <input type="hidden" name="userUid" [value]="userId">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Cuatrimestre">Cuatrimestre:</label>
+                            <select name="Cuatrimestre" class="form-control" placeholder="Seleccione..." [(ngModel)]="this.dataApi.selectedInscripcion.cuatrimestre">
+                            <option selected>Seleccionar...</option>
+                            <option value="Primero">Primero</option>
+                            <option value="Segundo">Segundo</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Profesor">Materia:</label>
+                            <select name="Profesor" class="form-control" placeholder="Seleccione..." [(ngModel)]="this.dataApi.selectedInscripcion.materia" (change)="setMateriaValues($event.target.value)">
+                        <option selected>Seleccionar...</option>
+                        <ng-container *ngFor="let turno of this.turnos; index as i">
+                            <option  *ngIf="turno.Cupos > 0 && turno.Cuatrimestre == this.dataApi.selectedInscripcion.cuatrimestre">
+                              {{turno.Nombre}}
+                            </option>
+                        </ng-container>
+                      </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" #btnClose data-dismiss="modal">Salir</button>
+                        <button type="submit" class="btn btn-primary">Guardar Inscripcion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="form-group col-md-6">
+                                <label for="Cuatrimestre">Cuatrimestre:</label>
+                                <select name="Cuatrimestre" class="form-control" disabled [(ngModel)]="this.dataApi.selectedInscripcion.cuatrimestre">
+                                <option>{{turno.Cuatrimestre}} </option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="Cupos">Cupos:</label>
+                                    <div>
+                                        <input id="Cupos" name="Cupos" type="number" placeholder="" class="form-control input-md"> {{turno.Cupos}}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label" for="Profesor">Profesor:</label>
+                                    <div>
+                                        <input id="Profesor" name="Profesor" type="text" placeholder="" class="form-control input-md"> {{turno.Profesor}}
+                                    </div>
+                                </div>
+                            </div>-->

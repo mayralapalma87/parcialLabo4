@@ -1,3 +1,4 @@
+import { InscripcionInterface } from './../models/inscripcionInterface';
 import { Especialistas } from './../models/especialistas';
 import { turnoInteface } from './../models/turnoInterface';
 import { AuthService } from './auth.service';
@@ -14,7 +15,6 @@ import { UserInterface } from '../models/user';
   providedIn: 'root'
 })
 export class DataApiService {
-
   // tslint:disable-next-line: max-line-length
   constructor(private afs: AngularFirestore) {
     this.listaTurnos = afs.collection<turnoInteface>('turnos');
@@ -25,6 +25,8 @@ export class DataApiService {
     this.especialidades = this.listaEspecialistas.valueChanges();
     this.listaUsers = afs.collection<UserInterface>('users');
     this.users = this.listaUsers.valueChanges();
+    this.listaInscripciones = afs.collection<InscripcionInterface>('inscripciones');
+    this.inscripciones = this.listaUsers.valueChanges();
   }
 
   private listaTurnos: AngularFirestoreCollection<turnoInteface>;
@@ -42,6 +44,9 @@ export class DataApiService {
       admin: false
     }
   };
+  public selectedInscripcion: InscripcionInterface = {
+    id: null
+  };
 
   private listaEspecialistas: AngularFirestoreCollection<Especialistas>;
   private especialistas: Observable<Especialistas[]>;
@@ -58,6 +63,10 @@ export class DataApiService {
   private userDoc: AngularFirestoreDocument<UserInterface>;
   private user: Observable<UserInterface>;
 
+  private listaInscripciones: AngularFirestoreCollection<InscripcionInterface>;
+  private inscripciones: Observable<InscripcionInterface[]>;
+  private inscripcionDoc: AngularFirestoreDocument<InscripcionInterface>;
+  private inscripcion: Observable<InscripcionInterface>;
 
   getTurnos() {
     return this.turnos = this.listaTurnos.snapshotChanges()
@@ -79,6 +88,16 @@ export class DataApiService {
        });
      }));
  }
+ getInscripciones() {
+  return this.inscripciones = this.listaInscripciones.snapshotChanges()
+   .pipe(map(changes => {
+     return changes.map(action => {
+       const data = action.payload.doc.data() as InscripcionInterface;
+       data.id = action.payload.doc.id;
+       return data;
+     });
+   }));
+}
   getEspecialistas() {
      return this.especialistas = this.listaEspecialistas.snapshotChanges()
       .pipe(map(changes => {
@@ -179,4 +198,16 @@ export class DataApiService {
     this.userDoc.delete();
   }
 
+  agregarInscripcion(inscripcion: InscripcionInterface): void {
+    this.listaInscripciones.add(inscripcion);
+  }
+  modificarInscripcion(inscripcion: InscripcionInterface) {
+    const idinscripcion = inscripcion.id;
+    this.inscripcionDoc = this.afs.doc<InscripcionInterface>(`inscripciones/${idinscripcion}`);
+    this.inscripcionDoc.update(inscripcion);
+  }
+  borrarInscripcion(idinscripcion: string) {
+    this.inscripcionDoc = this.afs.doc<InscripcionInterface>(`inscripciones/${idinscripcion}`);
+    this.inscripcionDoc.delete();
+  }
 }

@@ -13,6 +13,7 @@ import { AgendaEspecialistaComponent } from './agendaEspecialista/agendaEspecial
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ListaUsuariosComponent } from './listaUsuarios/listaUsuarios.component';
+import { IncripcionesComponent } from './incripciones/incripciones.component';
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'listaUsuarios', component: ListaUsuariosComponent, canActivate: [AuthGuard]},
   {path: 'navbar' , component: NavbarComponent},
   {path: 'nuevoTurno' , component: NuevoTurnoComponent, canActivate: [AuthGuard]},
+  {path: 'inscripciones' , component: IncripcionesComponent, canActivate: [AuthGuard]},
   {path: 'menuRecepcion' , component: MenuRecepcionComponent, canActivate: [AuthGuard]},
   {path: 'encuesta/:id' , component: EncuestaComponent, canActivate: [AuthGuard]},
   {path: 'agenda' , component: AgendaEspecialistaComponent, canActivate: [AuthGuard]},
